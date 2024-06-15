@@ -1,0 +1,86 @@
+<div class="p-8 flex items-start justify-center">
+  <form
+    class="w-full py-4 px-6 max-w-lg bg-white border border-gray-200 rounded-lg shadow flex flex-col gap-4"
+    [formGroup]="registerForm"
+    (ngSubmit)="registerForm.valid && register()"
+    autocomplete="off"
+  >
+    <h5 class="text-xl my-2 font-medium text-gray-900">
+      Regístrate en nuestra plataforma
+    </h5>
+
+    <app-text-input
+      [formControl]="$any(registerForm.controls['rut'])"
+      label="RUT"
+      placeholder="Ingrese su RUT. Ej: 12345678-9"
+      requiredMessage="El RUT es requerido"
+    />
+
+    <app-text-input
+      [formControl]="$any(registerForm.controls['name'])"
+      label="Nombre completo"
+      placeholder="Ingrese su nombre completo"
+      requiredMessage="El nombre completo es requerido"
+    />
+
+    <app-text-input
+      [formControl]="$any(registerForm.controls['birthday'])"
+      label="Fecha de nacimiento"
+      placeholder="Ingrese su fecha de nacimiento en formato dd/mm/yy"
+      requiredMessage="La fecha de nacimiento es requerida"
+    />
+
+    <app-text-input
+      [formControl]="$any(registerForm.controls['email'])"
+      label="Correo electrónico"
+      [type]="'email'"
+      placeholder="Ingrese su correo electrónico"
+      requiredMessage="El correo electrónico es requerido"
+    />
+
+    <app-select-input
+      [formControl]="$any(registerForm.controls['genderId'])"
+      label="Género"
+      placeholder="Seleccione un género"
+      [options]="genderOptions"
+      requiredMessage="El género es requerido"
+    />
+
+    <app-text-input
+      [formControl]="$any(registerForm.controls['password'])"
+      label="Contraseña"
+      [type]="'password'"
+      placeholder="Ingrese su contraseña"
+      requiredMessage="La contraseña es requerida"
+    />
+
+    <app-text-input
+      [formControl]="$any(registerForm.controls['confirmPassword'])"
+      label="Confirme la contraseña"
+      [type]="'password'"
+      placeholder="Confirme su contraseña"
+      requiredMessage="La confirmación de la contraseña es requerida"
+    />
+
+    <div
+      *ngIf="errorMessage"
+      class="p-4 text-sm text-red-800 rounded-lg bg-red-50"
+      role="alert"
+    >
+      <span class="font-medium">Error!</span> {{ errorMessage }}
+    </div>
+
+    <button
+      class="place-self-end w-fit my-2 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg"
+      [disabled]="!registerForm.valid"
+      [ngClass]="
+        registerForm.valid
+          ? 'hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300'
+          : 'bg-blue-300 cursor-not-allowed'
+      "
+      type="submit"
+    >
+      Registrarse
+    </button>
+  </form>
+</div>
