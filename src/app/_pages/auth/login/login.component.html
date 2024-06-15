@@ -1,0 +1,46 @@
+<div class="p-8 flex items-start justify-center">
+  <form
+    class="w-full py-4 px-6 max-w-lg bg-white border border-gray-200 rounded-lg shadow flex flex-col gap-4"
+    [formGroup]="loginForm"
+    (ngSubmit)="loginForm.valid && login()"
+    autocomplete="on"
+  >
+    <h5 class="text-xl my-2 font-medium text-gray-900">Inicia sesión</h5>
+
+    <app-text-input
+      [formControl]="$any(loginForm.controls['email'])"
+      label="Correo electrónico"
+      [type]="'email'"
+      placeholder="Ingrese su correo electrónico"
+      requiredMessage="El correo electrónico es requerido"
+    />
+
+    <app-text-input
+      [formControl]="$any(loginForm.controls['password'])"
+      label="Contraseña"
+      [type]="'password'"
+      placeholder="Ingrese su contraseña"
+      requiredMessage="La contraseña es requerida"
+    />
+
+    <div
+      *ngIf="errorMessage"
+      class="p-4 text-sm text-red-800 rounded-lg bg-red-50"
+      role="alert"
+    >
+      <span class="font-medium">Error!</span> {{ errorMessage }}
+    </div>
+
+    <button
+      class="place-self-end w-fit my-2 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg"
+      [disabled]="!loginForm.valid"
+      [ngClass]="
+        loginForm.valid
+          ? 'hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300'
+          : 'bg-blue-300 cursor-not-allowed'
+      "
+    >
+      Acceder
+    </button>
+  </form>
+</div>
