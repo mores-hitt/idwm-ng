@@ -24,6 +24,16 @@ export class AuthService {
     );
   }
 
+  login(model: any) {
+    return this.http.post<Auth>(`${this.baseUrl}/auth/login`, model).pipe(
+      map((auth: Auth) => {
+        if (auth) {
+          this.setCurrentAuth(auth);
+        }
+      })
+    );
+  }
+
   setCurrentAuth(auth: Auth) {
     localStorage.setItem('auth', JSON.stringify(auth));
     this.currentAuthSource.next(auth);
