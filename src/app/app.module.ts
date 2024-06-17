@@ -11,6 +11,8 @@ import { LoginComponent } from './_pages/auth/login/login.component';
 import { RegisterComponent } from './_pages/auth/register/register.component';
 import { TextInputComponent } from './_components/text-input/text-input.component';
 import { SelectInputComponent } from './_components/select-input/select-input.component';
+import { ListComponent } from './_pages/product/list/list.component';
+import { ProductItemComponent } from './_components/product-item/product-item.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { SelectInputComponent } from './_components/select-input/select-input.co
     RegisterComponent,
     TextInputComponent,
     SelectInputComponent,
+    ListComponent,
+    ProductItemComponent,
   ],
   imports: [
     BrowserModule,
