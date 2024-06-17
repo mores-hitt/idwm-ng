@@ -1,0 +1,97 @@
+<div>
+  <div class="h-64 overflow-hidden flex items-center justify-center">
+    <img
+      class="object-contain h-full w-full"
+      [src]="product.imgUrl"
+      [alt]="product.name"
+      title="{{ product.name }}"
+    />
+  </div>
+
+  <div>
+    <h5
+      class="text-xl mt-2.5 font-semibold tracking-tight text-gray-900 truncate"
+    >
+      {{ product.name }}
+    </h5>
+
+    <div class="flex items-center my-2.5">
+      <div class="flex items-center space-x-1 rtl:space-x-reverse">
+        <span class="text-gray-900 text-sm font-semibold">
+          Stock: {{ product.stock }}
+        </span>
+      </div>
+
+      <span
+        class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded"
+      >
+        {{ product.type.type }}
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="mt-auto">
+  <div class="flex items-center justify-between">
+    <span class="text-xl font-bold text-gray-900"> ${{ product.price }} </span>
+
+    <button
+      id="dropdownMenuIconHorizontalButton"
+      data-dropdown-toggle="dropdownDotsTopHorizontal"
+      class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+      type="button"
+      title="ProductOptions"
+    >
+      <svg
+        class="w-5 h-5"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 16 3"
+      >
+        <path
+          d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"
+        />
+      </svg>
+    </button>
+
+    <div
+      id="dropdownDotsHorizontal"
+      class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+    >
+      <ul
+        class="py-2 text-sm text-gray-700 dark:text-gray-200"
+        aria-labelledby="dropdownMenuIconHorizontalButton"
+      >
+        <li>
+          <a
+            href="#"
+            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+            >Dashboard</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+            >Settings</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+            >Earnings</a
+          >
+        </li>
+      </ul>
+      <div class="py-2">
+        <a
+          href="#"
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+          >Separated link</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
