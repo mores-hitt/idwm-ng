@@ -34,6 +34,20 @@ export class AuthService {
     );
   }
 
+  logout() {
+    localStorage.removeItem('auth');
+    this.currentAuthSource.next(null);
+  }
+
+  getRole() {
+    const auth = JSON.parse(localStorage.getItem('auth') || '{}');
+    const token = auth.token;
+    const payload = token.split('.')[1];
+    const decoded = window.atob(payload);
+    const role = JSON.parse(decoded)['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+    return role;
+  }
+
   setCurrentAuth(auth: Auth) {
     localStorage.setItem('auth', JSON.stringify(auth));
     this.currentAuthSource.next(auth);
