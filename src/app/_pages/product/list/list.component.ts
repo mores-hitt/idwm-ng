@@ -12,12 +12,15 @@ export class ListComponent {
 
   constructor(private productService: ProductService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getProducts();
+  }
 
   getProducts() {
     this.productService.getProducts().subscribe({
       next: (response) => {
         this.products = response;
+        console.log(this.products);
       },
       error: (result) => {
         if (typeof result.error === 'string') {
