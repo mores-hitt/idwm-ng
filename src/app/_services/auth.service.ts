@@ -8,14 +8,14 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class AuthService {
-  baseUrl: string = environment.apiUrl;
+  baseUrl: string = environment.apiUrl + '/auth';
   private currentAuthSource = new BehaviorSubject<Auth | null>(null);
   currentAuth$ = this.currentAuthSource.asObservable();
 
   constructor(private http: HttpClient) {}
 
   register(model: any) {
-    return this.http.post<Auth>(`${this.baseUrl}/auth/register`, model).pipe(
+    return this.http.post<Auth>(`${this.baseUrl}/register`, model).pipe(
       map((auth: Auth) => {
         if (auth) {
           this.setCurrentAuth(auth);
@@ -25,7 +25,7 @@ export class AuthService {
   }
 
   login(model: any) {
-    return this.http.post<Auth>(`${this.baseUrl}/auth/login`, model).pipe(
+    return this.http.post<Auth>(`${this.baseUrl}/login`, model).pipe(
       map((auth: Auth) => {
         if (auth) {
           this.setCurrentAuth(auth);
@@ -40,6 +40,7 @@ export class AuthService {
   }
 
   getRole() {
+    if (!localStorage.getItem('auth')) return;
     const auth = JSON.parse(localStorage.getItem('auth') || '{}');
     const token = auth.token;
     const payload = token.split('.')[1];
