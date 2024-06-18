@@ -1,12 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Product } from 'src/app/_interfaces/product';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
-  styles: [
-  ]
+  styles: [],
 })
 export class ProductItemComponent {
-  product: Product = {} as Product;
+  @Input() product: Product = {} as Product;
+
+  constructor(public authService: AuthService) {}
+
+  deleteProduct(id: string) {
+    console.log(id);
+  }
 }
