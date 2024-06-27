@@ -21,4 +21,10 @@ export class ProductService {
       `${this.baseUrl}/available/${pageNumber}/${pageSize}`
     );
   }
+
+  editProduct(id: number, model: FormData) {
+    return this.http.put<string>(`${this.baseUrl}/${id}`, model, {
+      responseType: 'text' as 'json',
+    });
+  }
 }
