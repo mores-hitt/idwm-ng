@@ -11,9 +11,10 @@ import { LoginComponent } from './_pages/auth/login/login.component';
 import { RegisterComponent } from './_pages/auth/register/register.component';
 import { TextInputComponent } from './_components/text-input/text-input.component';
 import { SelectInputComponent } from './_components/select-input/select-input.component';
-import { ListComponent } from './_pages/product/list/list.component';
+import { ProductListComponent } from './_pages/product/product-list/product-list.component';
 import { ProductItemComponent } from './_components/product-item/product-item.component';
 import { AuthInterceptor } from './_interceptors/auth.interceptor';
+import { ProductEditComponent } from './_pages/product/product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +25,9 @@ import { AuthInterceptor } from './_interceptors/auth.interceptor';
     RegisterComponent,
     TextInputComponent,
     SelectInputComponent,
-    ListComponent,
+    ProductListComponent,
     ProductItemComponent,
+    ProductEditComponent,
   ],
   imports: [
     BrowserModule,
