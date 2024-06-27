@@ -27,4 +27,10 @@ export class ProductService {
       responseType: 'text' as 'json',
     });
   }
+
+  deleteProduct(id: number): Observable<string> {
+    return this.http.delete<string>(`${this.baseUrl}/${id}`, {
+      responseType: 'text' as 'json',
+    });
+  }
 }
