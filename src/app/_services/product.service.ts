@@ -15,4 +15,10 @@ export class ProductService {
   getProducts() {
     return this.http.get<Product[]>(`${this.baseUrl}`);
   }
+
+  getAvailableProducts(pageNumber: number, pageSize: number) {
+    return this.http.get<Product[]>(
+      `${this.baseUrl}/available/${pageNumber}/${pageSize}`
+    );
+  }
 }
