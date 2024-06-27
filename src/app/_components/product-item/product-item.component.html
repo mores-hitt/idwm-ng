@@ -34,13 +34,13 @@
 <div class="mt-auto">
   <div class="flex items-center justify-between">
     <span class="text-xl font-bold text-gray-900">
-      {{ product.price | currency : "$" }}
+      {{ product.price | currency: 'CLP':'symbol-narrow':'1.0-0'}}
     </span>
 
     <div *ngIf="authService.getRole() === 'Admin'" class="flex items-center">
       <a
         class="hover:bg-gray-100 rounded-md px-1 py-2"
-        routerLink="/edit-product/{{ product.id }}"
+        [routerLink]="['/product/edit', product.id]"
       >
         <img
           class="w-4 h-4"
@@ -51,7 +51,7 @@
       </a>
       <a
         class="hover:bg-gray-100 rounded-md px-1 py-2 cursor-pointer"
-        (click)="deleteProduct(product.id.toString())"
+        (click)="deleteProduct(product.id)"
       >
         <img
           class="w-4 h-4"
@@ -63,8 +63,8 @@
     </div>
 
     <button
-      *ngIf="product.stock > 0 && authService.getRole() === 'User'"
-      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+      *ngIf="authService.getRole() === 'Usuario'"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3.5 py-2 text-center"
     >
       Comprar
     </button>
