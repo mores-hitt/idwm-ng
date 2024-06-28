@@ -4,6 +4,7 @@ import { LoginComponent } from './_pages/auth/login/login.component';
 import { RegisterComponent } from './_pages/auth/register/register.component';
 import { ProductListComponent } from './_pages/product/product-list/product-list.component';
 import { ProductEditComponent } from './_pages/product/product-edit/product-edit.component';
+import { ClientListComponent } from './_pages/admin/client-list/client-list.component';
 import { authGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: 'product/edit/:id',
         component: ProductEditComponent,
+      },
+      {
+        path: 'clients',
+        component: ClientListComponent,
       }
     ],
   },

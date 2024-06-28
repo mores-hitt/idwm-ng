@@ -15,6 +15,7 @@ import { ProductListComponent } from './_pages/product/product-list/product-list
 import { ProductItemComponent } from './_components/product-item/product-item.component';
 import { AuthInterceptor } from './_interceptors/auth.interceptor';
 import { ProductEditComponent } from './_pages/product/product-edit/product-edit.component';
+import { ClientListComponent } from './_pages/admin/client-list/client-list.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ProductEditComponent } from './_pages/product/product-edit/product-edit
     ProductListComponent,
     ProductItemComponent,
     ProductEditComponent,
+    ClientListComponent,
   ],
   imports: [
     BrowserModule,
