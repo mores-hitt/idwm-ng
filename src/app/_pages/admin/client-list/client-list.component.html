@@ -1,0 +1,52 @@
+<section class="p-3">
+  <div class="mx-auto max-w-screen-xl px-4">
+    <div class="bg-white relative shadow-md overflow-x-auto">
+      <table class="w-full text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 text-center">
+          <tr>
+            <th scope="col" class="px-4 py-3">ID</th>
+            <th scope="col" class="px-4 py-3">Rut</th>
+            <th scope="col" class="px-4 py-3">Nombre</th>
+            <th scope="col" class="px-4 py-3">Fecha de nacimiento</th>
+            <th scope="col" class="px-4 py-3">Correo electrónico</th>
+            <th scope="col" class="px-4 py-3">Estado</th>
+            <th scope="col" class="px-4 py-3">Género</th>
+            <th scope="col" class="px-4 py-3">Rol</th>
+            <th scope="col" class="px-4 py-3">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b" *ngIf="users.length === 0">
+            <td colspan="6" class="px-4 py-3 text-center text-gray-500">
+              No hay usuarios registrados
+            </td>
+          </tr>
+          <tr class="border-b text-center" *ngFor="let user of users">
+            <th
+              scope="row"
+              class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap"
+            >
+              {{ user.id }}
+            </th>
+            <td class="px-4 py-3">{{ user.rut }}</td>
+            <td class="px-4 py-3">{{ user.name }}</td>
+            <td class="px-4 py-3">{{ user.birthday }}</td>
+            <td class="px-4 py-3">{{ user.email }}</td>
+            <td class="px-4 py-3">{{ this.getStatus(user.isActive) }}</td>
+            <td class="px-4 py-3">{{ user.gender.type }}</td>
+            <td class="px-4 py-3">{{ user.role.type }}</td>
+            <td class="px-4 py-3">
+              <button
+                type="button"
+                class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100"
+                (click)="this.changeStatus(user.id, !user.isActive)"
+              >
+                Cambiar estado
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
