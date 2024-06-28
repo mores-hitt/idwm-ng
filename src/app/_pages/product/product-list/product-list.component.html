@@ -1,4 +1,7 @@
 <div class="container mx-auto p-8">
+
+  <app-search-bar (searchResults)="onSearchResults($event)"></app-search-bar>
+
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
     <div *ngFor="let product of shownProducts"
       class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between p-4">
@@ -20,7 +23,7 @@
 
       <!-- Next Button -->
       <button
-      *ngIf="shownProducts.length >= pageSize && !loading"
+      *ngIf="shownProducts.length == pageSize && !loading && totalProducts > (pageNum * pageSize)"
         (click)="getNextPage()"
         class="flex items-center justify-center px-4 h-10 ms-3 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
         Next
