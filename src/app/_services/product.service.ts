@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { Product } from '../_interfaces/product';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,17 +12,17 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  getProducts() {
+  getProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.baseUrl}`);
   }
 
-  getAvailableProducts(pageNumber: number, pageSize: number) {
+  getAvailableProducts(pageNumber: number, pageSize: number): Observable<Product[]> {
     return this.http.get<Product[]>(
       `${this.baseUrl}/available/${pageNumber}/${pageSize}`
     );
   }
 
-  editProduct(id: number, model: FormData) {
+  editProduct(id: number, model: FormData): Observable<string> {
     return this.http.put<string>(`${this.baseUrl}/${id}`, model, {
       responseType: 'text' as 'json',
     });
