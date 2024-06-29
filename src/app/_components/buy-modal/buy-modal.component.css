@@ -4,6 +4,12 @@
   align-items: center;
 }
 
+#receipt-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .modal-backdrop {
   position: fixed;
   top: 0;
