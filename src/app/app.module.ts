@@ -16,6 +16,7 @@ import { ProductItemComponent } from './_components/product-item/product-item.co
 import { AuthInterceptor } from './_interceptors/auth.interceptor';
 import { ProductEditComponent } from './_pages/product/product-edit/product-edit.component';
 import { SearchBarComponent } from './_components/search-bar/search-bar.component';
+import { BuyModalComponent } from './_components/buy-modal/buy-modal.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { SearchBarComponent } from './_components/search-bar/search-bar.componen
     ProductItemComponent,
     ProductEditComponent,
     SearchBarComponent,
+    BuyModalComponent,
   ],
   imports: [
     BrowserModule,

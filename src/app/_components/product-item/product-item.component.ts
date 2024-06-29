@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from 'src/app/_interfaces/product';
 import { AuthService } from 'src/app/_services/auth.service';
 import { ProductService } from 'src/app/_services/product.service';
@@ -10,6 +10,7 @@ import { ProductService } from 'src/app/_services/product.service';
 })
 export class ProductItemComponent {
   @Input() product: Product = {} as Product;
+  showBuyModal: boolean = false;
 
   constructor(public authService: AuthService, private productService: ProductService) {}
 
@@ -28,5 +29,13 @@ export class ProductItemComponent {
         console.log(result);
       },
     });
+  }
+
+  openBuyModal(){
+    this.showBuyModal = true;
+  }
+
+  handleCloseBuyModal(){
+    this.showBuyModal = false;
   }
 }
