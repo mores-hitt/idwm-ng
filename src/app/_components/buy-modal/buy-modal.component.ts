@@ -35,7 +35,6 @@ export class BuyModalComponent {
   ){}
 
   ngOnInit(): void {
-    console.log('Entro al fakin modal')
     this.initializeForm();
   }
 
@@ -53,7 +52,7 @@ export class BuyModalComponent {
         return
       }
       this.errorMessage = 'Formulario invalido'
-      console.log('formulario invalido pete')
+      console.log('formulario invalido')
       return
     }
 
@@ -63,6 +62,7 @@ export class BuyModalComponent {
       console.log(auth);
       if (!auth) {
         console.log('no hay auth')
+        this.errorMessage = 'No hay usuario logueado';
         return
       }
       const authJson = JSON.parse(auth);
@@ -80,14 +80,15 @@ export class BuyModalComponent {
           this.bought = true;
         },
         error: (error) => {
-          console.log('error en la compra')
+          console.log('error en la compra');
           this.errorMessage = 'Error en la compra';
         },
       });
 
       return
     } catch (error) {
-      console.log('error invalido pete')
+      console.log('error invalido');
+      console.log(error);
       return
     }
   }
@@ -98,6 +99,8 @@ export class BuyModalComponent {
 
   closeReceiptModal(): void {
     this.bought = false;
+
+    //refrescar la pagina, navegando hacia la misma pagina
     let currentUrl = this.router.url;
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
       this.router.navigate([currentUrl]);

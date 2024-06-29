@@ -19,9 +19,6 @@ export class PurchaseService {
     const productId = String(productI);
     const userId = String(userI);
 
-    console.log(quantity, productId, userId);
-
-
     return this.http.post<Receipt>(`${this.baseUrl}/Purchase`, {quantity, productId, userId}).pipe(
       map((receipt: Receipt) => {
         return receipt;

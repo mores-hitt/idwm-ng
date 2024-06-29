@@ -42,7 +42,6 @@ export class ProductListComponent {
         this.totalProducts = this.products.length;
         this.shownProducts = this.products.slice(0, this.pageSize);
         this.totalPages = Math.ceil(this.totalProducts / this.pageSize);
-        console.log(this.products);
         this.loading = false;
       },
       error: (result) => {
@@ -56,12 +55,9 @@ export class ProductListComponent {
   getAvailableProducts() {
     this.productService.getAvailableProducts(this.pageNum, this.pageSize).subscribe({
       next: (response) => {
-        this.shownProducts = response;
-        console.log(this.shownProducts);
-        this.loading = false;
 
-        console.log(this.pageNum);
-        console.log(this.pageSize);
+        this.shownProducts = response;
+        this.loading = false;
 
         this.totalProducts = 9999;
         this.totalPages = 9999;
@@ -75,8 +71,6 @@ export class ProductListComponent {
   }
 
   getPreviousPage() {
-    console.log(this.pageNum);
-    console.log(this.pageSize);
     this.pageNum--;
     if (this.authService.getRole() === 'Admin' || this.searched){
       this.shownProducts = this.products.slice((this.pageNum - 1) * this.pageSize, this.pageNum * this.pageSize);
@@ -84,7 +78,6 @@ export class ProductListComponent {
       this.productService.getAvailableProducts(this.pageNum, this.pageSize).subscribe({
         next: (response) => {
           this.shownProducts = response;
-          console.log(this.products);
         },
         error: (result) => {
           if (typeof result.error === 'string') {
@@ -96,8 +89,6 @@ export class ProductListComponent {
   }
 
   getNextPage() {
-    console.log(this.pageNum);
-    console.log(this.pageSize);
     this.pageNum++;
 
     if (this.authService.getRole() === 'Admin' || this.searched){
@@ -106,7 +97,6 @@ export class ProductListComponent {
       this.productService.getAvailableProducts(this.pageNum, this.pageSize).subscribe({
         next: (response) => {
           this.shownProducts = response;
-          console.log(this.products);
         },
         error: (result) => {
           if (typeof result.error === 'string') {
