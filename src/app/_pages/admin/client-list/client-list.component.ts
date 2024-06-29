@@ -33,9 +33,14 @@ export class ClientListComponent implements OnInit{
     });
   }
 
-  changeStatus(id: number, status: boolean) {
-    console.log(id, status.toString());
-    this.userService.changeStatus(id, status.toString()).subscribe({
+  changeStatus(id: number) {
+    this.users = this.users.map((user) => {
+      if (user.id === id) {
+        user.isActive = !user.isActive;
+      }
+      return user;
+    }, this.users);
+    this.userService.changeStatus(id).subscribe({
       next: () => {
         this.getUsers();
       },
@@ -43,6 +48,7 @@ export class ClientListComponent implements OnInit{
         if (typeof result.error === 'string') {
           console.log(result.error);
         }
+        console.log(result);
       },
     });
   }
