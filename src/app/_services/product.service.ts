@@ -33,4 +33,16 @@ export class ProductService {
       responseType: 'text' as 'json',
     });
   }
+
+  searchProductAdmin(searchTerm: string) {
+    return this.http.get<Product[]>(
+      `${this.baseUrl}/search?query=${searchTerm}`
+    );
+  }
+
+  searchProductUser(searchTerm: string) {
+    return this.http.get<Product[]>(
+      `${this.baseUrl}/available/search?query=${searchTerm}`
+    );
+  }
 }

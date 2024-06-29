@@ -15,6 +15,8 @@ import { ProductListComponent } from './_pages/product/product-list/product-list
 import { ProductItemComponent } from './_components/product-item/product-item.component';
 import { AuthInterceptor } from './_interceptors/auth.interceptor';
 import { ProductEditComponent } from './_pages/product/product-edit/product-edit.component';
+import { SearchBarComponent } from './_components/search-bar/search-bar.component';
+import { BuyModalComponent } from './_components/buy-modal/buy-modal.component';
 import { ClientListComponent } from './_pages/admin/client-list/client-list.component';
 
 @NgModule({
@@ -29,6 +31,8 @@ import { ClientListComponent } from './_pages/admin/client-list/client-list.comp
     ProductListComponent,
     ProductItemComponent,
     ProductEditComponent,
+    SearchBarComponent,
+    BuyModalComponent,
     ClientListComponent,
   ],
   imports: [

@@ -9,7 +9,15 @@ import { AuthService } from 'src/app/_services/auth.service';
   styles: [],
 })
 export class ProductListComponent {
+  loading: boolean = true;
   products: Product[] = [];
+  shownProducts: Product[] = [];
+  totalProducts: number = 0;
+  totalPages: number = 0;
+  pageNum: number = 1;
+  pageSize: number = 3;
+  searched: boolean = false;
+
 
   constructor(
     private productService: ProductService,
@@ -17,6 +25,8 @@ export class ProductListComponent {
   ) {}
 
   ngOnInit(): void {
+    this.totalProducts = 0;
+    this.totalPages = 0;
     if (this.authService.getRole() === 'Admin') {
       this.getProducts();
     }
@@ -29,7 +39,10 @@ export class ProductListComponent {
     this.productService.getProducts().subscribe({
       next: (response) => {
         this.products = response;
-        console.log(this.products);
+        this.totalProducts = this.products.length;
+        this.shownProducts = this.products.slice(0, this.pageSize);
+        this.totalPages = Math.ceil(this.totalProducts / this.pageSize);
+        this.loading = false;
       },
       error: (result) => {
         if (typeof result.error === 'string') {
@@ -39,11 +52,15 @@ export class ProductListComponent {
     });
   }
 
-  getAvailableProducts(pageNumber: number = 1, pageSize: number = 10) {
-    this.productService.getAvailableProducts(pageNumber, pageSize).subscribe({
+  getAvailableProducts() {
+    this.productService.getAvailableProducts(this.pageNum, this.pageSize).subscribe({
       next: (response) => {
-        this.products = response;
-        console.log(this.products);
+
+        this.shownProducts = response;
+        this.loading = false;
+
+        this.totalProducts = 9999;
+        this.totalPages = 9999;
       },
       error: (result) => {
         if (typeof result.error === 'string') {
@@ -51,5 +68,53 @@ export class ProductListComponent {
         }
       },
     });
+  }
+
+  getPreviousPage() {
+    this.pageNum--;
+    if (this.authService.getRole() === 'Admin' || this.searched){
+      this.shownProducts = this.products.slice((this.pageNum - 1) * this.pageSize, this.pageNum * this.pageSize);
+    } else {
+      this.productService.getAvailableProducts(this.pageNum, this.pageSize).subscribe({
+        next: (response) => {
+          this.shownProducts = response;
+        },
+        error: (result) => {
+          if (typeof result.error === 'string') {
+            console.log(result.error);
+          }
+        },
+      });
+    }
+  }
+
+  getNextPage() {
+    this.pageNum++;
+
+    if (this.authService.getRole() === 'Admin' || this.searched){
+      this.shownProducts = this.products.slice((this.pageNum - 1) * this.pageSize, this.pageNum * this.pageSize);
+    } else {
+      this.productService.getAvailableProducts(this.pageNum, this.pageSize).subscribe({
+        next: (response) => {
+          this.shownProducts = response;
+        },
+        error: (result) => {
+          if (typeof result.error === 'string') {
+            console.log(result.error);
+          }
+        },
+      });
+    }
+
+  }
+
+
+  onSearchResults(results: any) {
+    this.searched = true;
+    this.pageNum = 1;
+    this.products = results;
+    this.totalProducts = this.products.length;
+    this.shownProducts = this.products.slice(0, this.pageSize);
+    this.totalPages = Math.ceil(this.totalProducts / this.pageSize);
   }
 }

@@ -1,0 +1,24 @@
+#crud-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#receipt-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 40; /* Ensure it's below the modal content */
+}
