@@ -63,7 +63,7 @@ export class ProductListComponent {
         console.log(this.pageNum);
         console.log(this.pageSize);
 
-        this.totalProducts = this.pageSize +1;
+        this.totalProducts = 9999;
         this.totalPages = 9999;
       },
       error: (result) => {
