@@ -22,6 +22,12 @@ export class ProductService {
     );
   }
 
+  addProduct(model: FormData): Observable<string> {
+    return this.http.post<string>(`${this.baseUrl}`, model, {
+      responseType: 'text' as 'json',
+    });
+  }
+
   editProduct(id: number, model: FormData): Observable<string> {
     return this.http.put<string>(`${this.baseUrl}/${id}`, model, {
       responseType: 'text' as 'json',
