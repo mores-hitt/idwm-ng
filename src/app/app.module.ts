@@ -18,6 +18,8 @@ import { ProductEditComponent } from './_pages/product/product-edit/product-edit
 import { SearchBarComponent } from './_components/search-bar/search-bar.component';
 import { BuyModalComponent } from './_components/buy-modal/buy-modal.component';
 import { ClientListComponent } from './_pages/admin/client-list/client-list.component';
+import { SearchClientBarComponent } from './_components/search-client-bar/search-client-bar.component';
+import { ProductAddComponent } from './_pages/product/product-add/product-add.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { ClientListComponent } from './_pages/admin/client-list/client-list.comp
     SearchBarComponent,
     BuyModalComponent,
     ClientListComponent,
+    SearchClientBarComponent,
+    ProductAddComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { ProductListComponent } from './_pages/product/product-list/product-list
 import { ProductEditComponent } from './_pages/product/product-edit/product-edit.component';
 import { ClientListComponent } from './_pages/admin/client-list/client-list.component';
 import { authGuard } from './_guards/auth.guard';
+import { ProductAddComponent } from './_pages/product/product-add/product-add.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -23,6 +24,10 @@ const routes: Routes = [
       {
         path: 'products/:pageNumber/:pageSize',
         component: ProductListComponent,
+      },
+      {
+        path: 'product/add',
+        component: ProductAddComponent,
       },
       {
         path: 'product/edit/:id',
