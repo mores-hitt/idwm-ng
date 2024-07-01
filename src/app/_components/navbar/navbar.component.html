@@ -22,7 +22,7 @@
       </svg>
     </a>
     <a
-      *ngIf="(authService.currentAuth$ | async)"
+      *ngIf="authService.currentAuth$ | async"
       class="text-gray-700 hover:bg-gray-100 hover:text-gray-800 rounded-md px-3 py-2 text-base font-medium"
       routerLinkActive="bg-gray-900 text-white"
       routerLink="/products"
@@ -32,7 +32,9 @@
 
   <div class="flex flex-row gap-4">
     <a
-      *ngIf="(authService.currentAuth$ | async) && (authService.getRole() === 'Admin')"
+      *ngIf="
+        (authService.currentAuth$ | async) && authService.getRole() === 'Admin'
+      "
       class="text-gray-700 hover:bg-gray-100 hover:text-gray-800 rounded-md px-3 py-2 text-base font-medium"
       routerLinkActive="bg-gray-900 text-white"
       routerLink="/clients"
@@ -53,7 +55,28 @@
       >Registrarse</a
     >
     <a
-      *ngIf="(authService.currentAuth$ | async)"
+      *ngIf="
+        (authService.currentAuth$ | async) && authService.getRole() === 'Admin'
+      "
+      class="text-gray-700 hover:bg-gray-100 hover:text-gray-800 rounded-md px-3 py-2 text-base font-medium"
+      routerLinkActive="bg-gray-900 text-white"
+      routerLink="/receipts"
+      >Ventas</a
+    >
+    <a
+      *ngIf="authService.currentAuth$ | async"
+      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+      [routerLink]="['/profile/edit', authService.getUserId()]"
+      >Editar perfil</a
+    >
+    <a
+      *ngIf="authService.currentAuth$ | async"
+      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+      [routerLink]="['/change-password', authService.getUserId()]"
+      >Cambiar contraseña</a
+    >
+    <a
+      *ngIf="authService.currentAuth$ | async"
       class="text-gray-700 hover:bg-gray-100 hover:text-gray-800 rounded-md px-3 py-2 text-base font-medium cursor-pointer"
       (click)="authService.logout()"
       routerLink="/"
