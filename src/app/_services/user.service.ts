@@ -34,4 +34,14 @@ export class UserService {
       responseType: 'text' as 'json',
     });
   }
+
+  changePassword(id: number, model: any): Observable<string> {
+    return this.http.put<string>(`${this.baseUrl}/${id}/password`, model, {
+      responseType: 'text' as 'json',
+    });
+  }
+
+  getPurchases(): Observable<Receipt[]> {
+    return this.http.get<Receipt[]>(`${this.baseUrl}/purchases`, { responseType: 'json' });
+  }
 }
