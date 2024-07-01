@@ -7,6 +7,9 @@ import { ProductEditComponent } from './_pages/product/product-edit/product-edit
 import { ClientListComponent } from './_pages/admin/client-list/client-list.component';
 import { authGuard } from './_guards/auth.guard';
 import { ProductAddComponent } from './_pages/product/product-add/product-add.component';
+import { EditProfileComponent } from './_pages/profile/edit-profile/edit-profile.component';
+import { ChangePasswordComponent } from './_pages/profile/change-password/change-password.component';
+import { ReceiptListComponent } from './_pages/admin/receipt-list/receipt-list.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -36,6 +39,18 @@ const routes: Routes = [
       {
         path: 'clients',
         component: ClientListComponent,
+      },
+      {
+        path: 'profile/edit/:id',
+        component: EditProfileComponent,
+      },
+      {
+        path: 'change-password/:id',
+        component: ChangePasswordComponent,
+      },
+      {
+        path: 'receipts',
+        component: ReceiptListComponent,
       }
     ],
   },

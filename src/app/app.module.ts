@@ -20,6 +20,9 @@ import { BuyModalComponent } from './_components/buy-modal/buy-modal.component';
 import { ClientListComponent } from './_pages/admin/client-list/client-list.component';
 import { SearchClientBarComponent } from './_components/search-client-bar/search-client-bar.component';
 import { ProductAddComponent } from './_pages/product/product-add/product-add.component';
+import { EditProfileComponent } from './_pages/profile/edit-profile/edit-profile.component';
+import { ChangePasswordComponent } from './_pages/profile/change-password/change-password.component';
+import { ReceiptListComponent } from './_pages/admin/receipt-list/receipt-list.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,9 @@ import { ProductAddComponent } from './_pages/product/product-add/product-add.co
     ClientListComponent,
     SearchClientBarComponent,
     ProductAddComponent,
+    EditProfileComponent,
+    ChangePasswordComponent,
+    ReceiptListComponent,
   ],
   imports: [
     BrowserModule,
