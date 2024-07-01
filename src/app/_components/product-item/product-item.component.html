@@ -1,0 +1,95 @@
+<!--
+  This HTML template represents the product item component.
+  It displays the details of a product, including its image, name, stock, type, and price.
+  The component also provides options for editing and deleting the product, as well as a button to purchase it.
+  The template uses Angular directives and bindings to dynamically display the product data.
+-->
+
+<div>
+  <!-- Display the product image -->
+  <div class="h-64 overflow-hidden flex items-center justify-center">
+    <img
+      class="object-contain h-full w-full"
+      [src]="product.imgUrl"
+      [alt]="product.name"
+      title="{{ product.name }}"
+    />
+  </div>
+
+  <div>
+    <!-- Display the product name -->
+    <h5
+      class="text-xl mt-2.5 font-semibold tracking-tight text-gray-900 truncate"
+    >
+      {{ product.name }}
+    </h5>
+
+    <div class="flex items-center my-2.5 justify-between">
+      <div class="flex items-center space-x-1 rtl:space-x-reverse">
+        <!-- Display the product stock -->
+        <span class="text-gray-900 text-sm font-semibold">
+          Stock: {{ product.stock }}
+        </span>
+      </div>
+
+      <!-- Display the product type -->
+      <span
+        class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded"
+      >
+        {{ product.productType.type }}
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="mt-auto">
+  <div class="flex items-center justify-between">
+    <!-- Display the product price -->
+    <span class="text-xl font-bold text-gray-900">
+      {{ product.price | currency : "CLP" : "symbol-narrow" : "1.0-0" }}
+    </span>
+
+    <div *ngIf="authService.getRole() === 'Admin'" class="flex items-center">
+      <!-- Edit product button -->
+      <a
+        class="hover:bg-gray-100 rounded-md px-1 py-2"
+        [routerLink]="['/product/edit', product.id]"
+      >
+        <img
+          class="w-4 h-4"
+          src="assets/edit.svg"
+          alt="Editar producto"
+          title="Editar producto"
+        />
+      </a>
+      <!-- Delete product button -->
+      <a
+        class="hover:bg-gray-100 rounded-md px-1 py-2 cursor-pointer"
+        (click)="deleteProduct(product.id)"
+      >
+        <img
+          class="w-4 h-4"
+          src="assets/trash.svg"
+          alt="Eliminar producto"
+          title="Eliminar producto"
+        />
+      </a>
+    </div>
+
+    <button
+      *ngIf="authService.getRole() === 'Usuario'"
+      (click)="openBuyModal()"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3.5 py-2 text-center"
+    >
+      Comprar
+    </button>
+  </div>
+</div>
+
+<!-- Buy modal component -->
+<app-buy-modal
+  *ngIf="showBuyModal"
+  [product]="product"
+  (openBuymodal)="openBuyModal()"
+  (closeBuyModal)="handleCloseBuyModal()"
+></app-buy-modal>

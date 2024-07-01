@@ -1,0 +1,53 @@
+<!--
+  This HTML code represents the template for the receipt list component.
+  It displays a table with information about receipts, including their ID, purchase date, product ID, product name, product type, product price, quantity, and total price.
+
+  Usage:
+  - Include this template in the receipt list component to display the list of receipts.
+
+  Example:
+  <app-receipt-list></app-receipt-list>
+-->
+
+<section class="p-3">
+  <div class="mx-auto max-w-screen-xl px-4">
+    <div class="bg-white relative shadow-md overflow-x-auto">
+      <table class="w-full text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 text-center">
+          <tr>
+            <th scope="col" class="px-4 py-3">ID</th>
+            <th scope="col" class="px-4 py-3">Fecha de compra</th>
+            <th scope="col" class="px-4 py-3">ID producto</th>
+            <th scope="col" class="px-4 py-3">Producto</th>
+            <th scope="col" class="px-4 py-3">Tipo de producto</th>
+            <th scope="col" class="px-4 py-3">Precio de producto</th>
+            <th scope="col" class="px-4 py-3">Cantidad</th>
+            <th scope="col" class="px-4 py-3">Precio total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b" *ngIf="receipts.length === 0">
+            <td colspan="6" class="px-4 py-3 text-center text-gray-500">
+              No hay compras registradas
+            </td>
+          </tr>
+          <tr class="border-b text-center" *ngFor="let receipt of receipts">
+            <th
+              scope="row"
+              class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap"
+            >
+              {{ receipt.id }}
+            </th>
+            <td class="px-4 py-3">{{ receipt.purchase_Date }}</td>
+            <td class="px-4 py-3">{{ receipt.productId }}</td>
+            <td class="px-4 py-3">{{ receipt.productName }}</td>
+            <td class="px-4 py-3">{{ receipt.productType }}</td>
+            <td class="px-4 py-3">{{ receipt.productPrice }}</td>
+            <td class="px-4 py-3">{{ receipt.quantity }}</td>
+            <td class="px-4 py-3">{{ receipt.totalPrice }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

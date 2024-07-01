@@ -1,0 +1,44 @@
+/**
+ * FILEPATH: /D:/Documents/Workspace/Angular/idwm-ng/src/app/_components/buy-modal/buy-modal.component.css
+ *
+ * CSS styles for the buy-modal.component.css file.
+ *
+ * #crud-modal:
+ *   - Represents the modal container for CRUD operations.
+ *   - It is displayed as a flex container with centered content.
+ *
+ * #receipt-modal:
+ *   - Represents the modal container for displaying receipts.
+ *   - It is displayed as a flex container with centered content.
+ *
+ * .modal-backdrop:
+ *   - Represents the backdrop for modals.
+ *   - It is positioned fixed and covers the entire viewport.
+ *   - It has a semi-transparent black background color.
+ *   - It is displayed as a flex container with centered content.
+ *   - It has a z-index of 40 to ensure it appears above other elements.
+ */
+#crud-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#receipt-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 40;
+}
