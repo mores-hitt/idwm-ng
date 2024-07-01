@@ -1,0 +1,90 @@
+<!--
+  This is the HTML template for the "ProductAddComponent" component.
+  It contains a form for adding a new product with various input fields such as name, type, price, and stock.
+  The form is submitted when it is valid and the "addProduct()" method is called.
+  The template also includes an image preview and an error message display area.
+-->
+<div class="p-8 flex items-start justify-center">
+  <form
+    class="w-full py-4 px-6 max-w-lg bg-white border border-gray-200 rounded-lg shadow flex flex-col gap-4"
+    [formGroup]="addForm"
+    (ngSubmit)="addForm.valid && addProduct()"
+    autocomplete="off"
+  >
+    <!-- Title -->
+    <h5 class="text-xl my-2 font-medium text-gray-900">Editar producto</h5>
+
+    <!-- Image Preview -->
+    <img
+      class="w-20 h-20 mx-auto"
+      [src]="this.imagePath || this.product.imgUrl"
+      alt="Imagen del producto"
+    />
+
+    <!-- Image Input -->
+    <input
+      type="file"
+      class="w-full py-4 px-6 max-w-lg bg-white border border-gray-200 rounded-lg shadow flex flex-col gap-4 justify-center"
+      accept=".png, .jpg size=1000"
+      title="Select an image"
+      placeholder="Select an image"
+      (change)="onFileSelected($event)"
+    />
+
+    <!-- Name Input -->
+    <app-text-input
+      [formControl]="$any(addForm.controls['name'])"
+      label="Nombre"
+      placeholder="Ingrese el nombre del producto"
+      requiredMessage="El nombre del producto es requerido"
+    />
+
+    <!-- Type Input -->
+    <app-select-input
+      [formControl]="$any(addForm.controls['productTypeId'])"
+      label="Tipo"
+      placeholder="Ingrese el tipo del producto"
+      requiredMessage="El tipo de producto es requerido"
+      [options]="typeOptions"
+    />
+
+    <!-- Price Input -->
+    <app-text-input
+      [formControl]="$any(addForm.controls['price'])"
+      label="Precio"
+      placeholder="Ingrese el precio del producto"
+      requiredMessage="El precio del producto es requerido"
+    />
+
+    <!-- Stock Input -->
+    <app-text-input
+      [formControl]="$any(addForm.controls['stock'])"
+      label="Stock"
+      placeholder="Ingrese el stock del producto"
+      requiredMessage="El stock del producto es requerido"
+    />
+
+    <!-- Error Message -->
+    <div
+      *ngIf=""
+      class="p-4 text-sm text-red-800 rounded-lg bg-red-50"
+      role="alert"
+    >
+      <span class="font-medium">Error!</span> {{ "xd" }}
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      class="place-self-end w-fit my-2 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg"
+      [disabled]="!addForm.valid"
+      [ngClass]="
+        addForm.valid
+          ? 'hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300'
+          : 'bg-blue-300 cursor-not-allowed'
+      "
+      type="submit"
+    >
+      Guardar
+    </button>
+  </form>
+</div>

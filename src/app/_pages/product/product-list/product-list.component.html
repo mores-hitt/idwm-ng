@@ -1,0 +1,79 @@
+<!--
+  This is the HTML template for the product list component.
+  It displays a list of products with a search bar and pagination buttons.
+
+  Usage:
+  <app-product-list></app-product-list>
+
+  Inputs:
+  - shownProducts: An array of products to be displayed.
+  - pageNum: The current page number.
+  - pageSize: The number of products to display per page.
+  - totalProducts: The total number of products.
+
+  Outputs:
+  - onSearchResults: Event emitted when the search bar returns search results.
+
+  Example:
+  <app-product-list
+    [shownProducts]="products"
+    [pageNum]="currentPage"
+    [pageSize]="productsPerPage"
+    [totalProducts]="totalProductsCount"
+    (onSearchResults)="handleSearchResults($event)"
+  ></app-product-list>
+-->
+<div class="container mx-auto p-8">
+  <!-- Search Bar -->
+  <div class="flex justify-between items-center mb-6 sm:mb-8 md:mb-10 lg:mb-12">
+    <app-search-bar (searchResults)="onSearchResults($event)"></app-search-bar>
+    <!-- Add Product Button -->
+    <a
+      class="flex items-center justify-center px-4 h-10 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+      [routerLink]="['/product/add']"
+    >
+      Add Product
+    </a>
+  </div>
+
+  <!-- Product Grid -->
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+  >
+    <div
+      *ngFor="let product of shownProducts"
+      class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between p-4"
+    >
+      <div>
+        <app-product-item [product]="product"></app-product-item>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination Buttons -->
+  <div class="flex justify-center mt-3 pt-3 pb-3 mb-3">
+    <div class="flex">
+      <!-- Previous Button -->
+      <button
+        *ngIf="pageNum > 1 && !loading"
+        (click)="getPreviousPage()"
+        class="flex items-center justify-center px-4 h-10 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+      >
+        Previous
+      </button>
+
+      <!-- Next Button -->
+      <button
+        *ngIf="
+          shownProducts.length == pageSize &&
+          !loading &&
+          totalProducts > pageNum * pageSize
+        "
+        (click)="getNextPage()"
+        class="flex items-center justify-center px-4 h-10 ms-3 text-base font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>

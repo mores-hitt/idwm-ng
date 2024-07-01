@@ -1,0 +1,67 @@
+<!--
+  This HTML template represents the edit profile component.
+  It contains a form for editing user profile information such as name, birthday, and gender.
+  The form is bound to the 'editForm' FormGroup in the component class.
+  When the form is submitted, the 'editUser()' method is called if the form is valid.
+-->
+
+<div class="p-8 flex items-start justify-center">
+  <form
+    class="w-full py-4 px-6 max-w-lg bg-white border border-gray-200 rounded-lg shadow flex flex-col gap-4"
+    [formGroup]="editForm"
+    (ngSubmit)="editForm.valid && editUser()"
+    autocomplete="off"
+  >
+    <h5 class="text-xl my-2 font-medium text-gray-900">Editar perfil</h5>
+
+    <!-- Text Input for Name -->
+    <app-text-input
+      [formControl]="$any(editForm.controls['name'])"
+      label="Nombre"
+      placeholder="Ingrese su nombre completo"
+      requiredMessage="El nombre es requerido"
+      [ngModel]="user.name"
+    />
+
+    <!-- Text Input for Birthday -->
+    <app-text-input
+      [formControl]="$any(editForm.controls['birthday'])"
+      label="Fecha de nacimiento"
+      placeholder="Ingrese su fecha de nacimiento en formato mm/dd/yy"
+      requiredMessage="La fecha de nacimiento es requerida"
+      [ngModel]="user.birthday.getMonth() + '/' + user.birthday.getDate() + '/' + user.birthday.getFullYear()"
+    />
+
+    <!-- Select Input for Gender -->
+    <app-select-input
+      [formControl]="$any(editForm.controls['genderId'])"
+      label="Género"
+      placeholder="{{ user.gender.type.toString() }}"
+      [options]="genderOptions"
+      requiredMessage="El género es requerido"
+    />
+
+    <!-- Error Message -->
+    <div
+      *ngIf=""
+      class="p-4 text-sm text-red-800 rounded-lg bg-red-50"
+      role="alert"
+    >
+      <span class="font-medium">Error!</span> {{ errorMessage }}
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      class="place-self-end w-fit my-2 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg"
+      [disabled]="!editForm.valid"
+      [ngClass]="
+        editForm.valid
+          ? 'hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300'
+          : 'bg-blue-300 cursor-not-allowed'
+      "
+      type="submit"
+    >
+      Guardar
+    </button>
+  </form>
+</div>
