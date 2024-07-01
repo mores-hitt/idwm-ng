@@ -4,6 +4,9 @@ import { ProductService } from 'src/app/_services/product.service';
 import { Product } from 'src/app/_interfaces/product';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+/**
+ * Component for adding a new product.
+ */
 @Component({
   selector: 'app-product-add',
   templateUrl: './product-add.component.html',
@@ -37,10 +40,16 @@ export class ProductAddComponent implements OnInit {
     private router: Router
   ) {}
 
+  /**
+   * Initializes the form with default values and validators.
+   */
   ngOnInit(): void {
     this.initializeForm();
   }
 
+  /**
+   * Initializes the addForm FormGroup with form controls and validators.
+   */
   initializeForm() {
     this.addForm = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(255)]],
@@ -67,6 +76,9 @@ export class ProductAddComponent implements OnInit {
     });
   }
 
+  /**
+   * Adds a new product by sending a POST request to the server.
+   */
   addProduct() {
     const formData = new FormData();
     formData.append('name', this.addForm.get('name')?.value);
@@ -92,6 +104,11 @@ export class ProductAddComponent implements OnInit {
     });
   }
 
+  /**
+   * Event handler for when a file is selected in the file input.
+   * Reads the file and sets the imagePath and image form control value.
+   * @param event The file input event.
+   */
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (!file) return;

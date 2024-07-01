@@ -9,13 +9,23 @@ import {
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
 
+/**
+ * Represents the LoginComponent of the application.
+ */
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styles: [],
 })
 export class LoginComponent implements OnInit {
+  /**
+   * Represents the login form.
+   */
   loginForm: FormGroup = new FormGroup({});
+
+  /**
+   * Represents the error message.
+   */
   errorMessage: string = '';
 
   constructor(
@@ -24,10 +34,16 @@ export class LoginComponent implements OnInit {
     private authService: AuthService
   ) {}
 
+  /**
+   * Initializes the login form.
+   */
   ngOnInit(): void {
     this.initializeForm();
   }
 
+  /**
+   * Initializes the login form with form controls and validators.
+   */
   initializeForm() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -35,6 +51,11 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  /**
+   * Performs the login action.
+   * Navigates to the home page on successful login.
+   * Sets the error message on login failure.
+   */
   login() {
     this.authService.login(this.loginForm.value).subscribe({
       next: () => {

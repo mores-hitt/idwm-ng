@@ -1,3 +1,111 @@
+<!--
+  This is the HTML template for the navbar component.
+  It contains a navigation bar with various links and buttons.
+  The navbar is responsive and adjusts its layout based on the screen size.
+  The links and buttons are conditionally displayed based on the user's authentication status and role.
+  The navbar is styled using CSS classes for background color, border, font, and spacing.
+  The links are styled with hover effects and active router link highlighting.
+  The buttons have rounded corners and are styled with hover effects.
+  The navbar component is used to provide navigation and user account functionality.
+-->
+<nav
+  class="bg-white border-gray-200 dark:bg-gray-900 font-medium w-full py-4 px-10 flex flex-row justify-between"
+>
+  <!-- Left section of the navbar -->
+  <div class="flex flex-row gap-4">
+    <!-- Logo link -->
+    <a class="flex items-center" routerLink="/">
+      <!-- Logo SVG -->
+      <svg
+        class="w-8 h-8 text-gray-700"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5"
+        />
+      </svg>
+    </a>
+    <!-- Products link -->
+    <a
+      *ngIf="authService.currentAuth$ | async"
+      class="text-gray-700 hover:bg-gray-100 hover:text-gray-800 rounded-md px-3 py-2 text-base font-medium"
+      routerLinkActive="bg-gray-900 text-white"
+      routerLink="/products"
+      >Productos</a
+    >
+  </div>
+
+  <!-- Right section of the navbar -->
+  <div class="flex flex-row gap-4">
+    <!-- Clients link (only visible to admin users) -->
+    <a
+      *ngIf="
+        (authService.currentAuth$ | async) && authService.getRole() === 'Admin'
+      "
+      class="text-gray-700 hover:bg-gray-100 hover:text-gray-800 rounded-md px-3 py-2 text-base font-medium"
+      routerLinkActive="bg-gray-900 text-white"
+      routerLink="/clients"
+      >Clientes</a
+    >
+    <!-- Login link (only visible to non-authenticated users) -->
+    <a
+      *ngIf="!(authService.currentAuth$ | async)"
+      class="text-gray-700 hover:bg-gray-100 hover:text-gray-800 rounded-md px-3 py-2 text-base font-medium"
+      routerLinkActive="bg-gray-900 text-white"
+      routerLink="/login"
+      >Iniciar sesión</a
+    >
+    <!-- Register link (only visible to non-authenticated users) -->
+    <a
+      *ngIf="!(authService.currentAuth$ | async)"
+      class="text-gray-700 hover:bg-gray-100 hover:text-gray-800 rounded-md px-3 py-2 text-base font-medium"
+      routerLinkActive="bg-gray-900 text-white"
+      routerLink="/register"
+      >Registrarse</a
+    >
+    <!-- Sales link (only visible to admin users) -->
+    <a
+      *ngIf="
+        (authService.currentAuth$ | async) && authService.getRole() === 'Admin'
+      "
+      class="text-gray-700 hover:bg-gray-100 hover:text-gray-800 rounded-md px-3 py-2 text-base font-medium"
+      routerLinkActive="bg-gray-900 text-white"
+      routerLink="/receipts"
+      >Ventas</a
+    >
+    <!-- Edit profile link -->
+    <a
+      *ngIf="authService.currentAuth$ | async"
+      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+      [routerLink]="['/profile/edit', authService.getUserId()]"
+      >Editar perfil</a
+    >
+    <!-- Change password link -->
+    <a
+      *ngIf="authService.currentAuth$ | async"
+      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+      [routerLink]="['/change-password', authService.getUserId()]"
+      >Cambiar contraseña</a
+    >
+    <!-- Logout link -->
+    <a
+      *ngIf="authService.currentAuth$ | async"
+      class="text-gray-700 hover:bg-gray-100 hover:text-gray-800 rounded-md px-3 py-2 text-base font-medium cursor-pointer"
+      (click)="authService.logout()"
+      routerLink="/"
+      >Cerrar sesión</a
+    >
+  </div>
+</nav>
 <nav
   class="bg-white border-gray-200 dark:bg-gray-900 font-medium w-full py-4 px-10 flex flex-row justify-between"
 >

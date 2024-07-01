@@ -24,6 +24,12 @@ import { EditProfileComponent } from './_pages/profile/edit-profile/edit-profile
 import { ChangePasswordComponent } from './_pages/profile/change-password/change-password.component';
 import { ReceiptListComponent } from './_pages/admin/receipt-list/receipt-list.component';
 
+/**
+ * The root module of the Angular application.
+ *
+ * This module is responsible for declaring and importing all the necessary components, modules, and services
+ * required for the application to run.
+ */
 @NgModule({
   declarations: [
     AppComponent,

@@ -4,6 +4,9 @@ import { ProductService } from 'src/app/_services/product.service';
 import { Product } from 'src/app/_interfaces/product';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+/**
+ * Represents the component for editing a product.
+ */
 @Component({
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',
@@ -38,6 +41,9 @@ export class ProductEditComponent implements OnInit {
     private router: Router
   ) {}
 
+  /**
+   * Initializes the component.
+   */
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.id = params['id'];
@@ -47,6 +53,9 @@ export class ProductEditComponent implements OnInit {
     this.initializeForm();
   }
 
+  /**
+   * Initializes the form with default values and validators.
+   */
   initializeForm() {
     this.editForm = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(255)]],
@@ -73,6 +82,9 @@ export class ProductEditComponent implements OnInit {
     });
   }
 
+  /**
+   * Retrieves the product from the server.
+   */
   getProduct() {
     this.productService.getProducts().subscribe({
       next: (response) => {
@@ -88,6 +100,9 @@ export class ProductEditComponent implements OnInit {
     });
   }
 
+  /**
+   * Edits the product.
+   */
   editProduct() {
     const formData = new FormData();
     formData.append('name', this.editForm.get('name')?.value);
@@ -113,6 +128,10 @@ export class ProductEditComponent implements OnInit {
     });
   }
 
+  /**
+   * Handles the file selected event.
+   * @param event The file selected event.
+   */
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (!file) return;

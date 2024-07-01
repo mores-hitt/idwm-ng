@@ -1,5 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
-
+/**
+ * This file is the main stylesheet for the Angular project.
+ * It includes the Tailwind CSS framework, which provides a set of utility classes for styling.
+ * The `@tailwind` directives are used to import the base, components, and utilities styles from Tailwind CSS.
+ */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

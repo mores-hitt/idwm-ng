@@ -1,3 +1,24 @@
+<!--
+  This component represents a select input element with options.
+
+  Usage:
+  <app-select-input
+    [label]="string"
+    [control]="FormControl"
+    [placeholder]="string"
+    [options]="Array<{ value: any, text: string }>"
+    [requiredMessage]="string"
+  ></app-select-input>
+
+  Example:
+  <app-select-input
+    label="Favorite Color"
+    [control]="colorControl"
+    placeholder="Select a color"
+    [options]="colorOptions"
+    requiredMessage="Please select a color"
+  ></app-select-input>
+-->
 <label for="{{ label }}" class="block mb-2 text-sm font-medium text-gray-900">{{
   label
 }}</label>

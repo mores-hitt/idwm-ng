@@ -1,3 +1,26 @@
+<!--
+  This is the template for the text input component.
+  It displays a label, an input field, and error messages based on the validation rules.
+
+  Input Properties:
+  - label: The label for the input field.
+  - type: The type of the input field (e.g., text, password, email).
+  - placeholder: The placeholder text for the input field.
+
+  Angular Directives:
+  - [ngClass]: Applies conditional CSS classes based on validation errors.
+  - *ngIf: Conditionally displays error messages based on validation errors.
+  - [formControl]: Binds the input field to a form control.
+
+  Example Usage:
+  <app-text-input
+    label="Username"
+    type="text"
+    placeholder="Enter your username"
+    [control]="usernameControl"
+    requiredMessage="Username is required"
+  ></app-text-input>
+-->
 <label
   for="{{ label }}"
   class="text-gray-900 block mb-2 text-sm font-medium"

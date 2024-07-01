@@ -9,6 +9,10 @@ import {
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
 
+/**
+ * Represents the RegisterComponent class.
+ * This component is responsible for handling user registration.
+ */
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -30,10 +34,17 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService
   ) {}
 
+  /**
+   * Initializes the component.
+   * This method is called after the component has been created and initialized.
+   */
   ngOnInit(): void {
     this.initializeForm();
   }
 
+  /**
+   * Initializes the register form with the necessary form controls and validators.
+   */
   initializeForm() {
     this.registerForm = this.fb.group({
       rut: ['', [Validators.required, this.validateRut()]],
@@ -68,6 +79,12 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  /**
+   * Validates the format and checksum of a Chilean RUT (Rol Único Tributario).
+   * Returns a validator function that can be used with Angular Reactive Forms.
+   *
+   * @returns A validator function that validates the RUT.
+   */
   validateRut(): ValidatorFn {
     return (control: AbstractControl) => {
       const rut = control.value;
@@ -110,6 +127,12 @@ export class RegisterComponent implements OnInit {
     };
   }
 
+  /**
+   * Validates the format and validity of a date input.
+   * Returns a ValidatorFn function that can be used in Angular form validation.
+   *
+   * @returns A ValidatorFn function that validates the date input.
+   */
   validateDate(): ValidatorFn {
     return (control: AbstractControl) => {
       const date = control.value;
@@ -139,6 +162,11 @@ export class RegisterComponent implements OnInit {
     };
   }
 
+  /**
+   * Returns a validator function that checks if the value of the control matches the value of another control.
+   * @param matchTo The name of the control to match against.
+   * @returns A validator function that returns an object with the `noMatching` property if the values do not match, or `null` if they match.
+   */
   matchValues(matchTo: string): ValidatorFn {
     return (control: AbstractControl) => {
       return control.value === control.parent?.get(matchTo)?.value
@@ -147,6 +175,11 @@ export class RegisterComponent implements OnInit {
     };
   }
 
+  /**
+   * Registers the user by calling the register method of the authService.
+   * If the registration is successful, it navigates to the home page.
+   * If there is an error, it sets the errorMessage property.
+   */
   register() {
     this.authService.register(this.registerForm.value).subscribe({
       next: () => {
@@ -158,7 +191,6 @@ export class RegisterComponent implements OnInit {
         } else {
           this.errorMessage = 'Intente nuevamente';
         }
-        console.log(result);
       },
     });
   }

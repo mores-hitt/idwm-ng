@@ -11,6 +11,9 @@ import { EditProfileComponent } from './_pages/profile/edit-profile/edit-profile
 import { ChangePasswordComponent } from './_pages/profile/change-password/change-password.component';
 import { ReceiptListComponent } from './_pages/admin/receipt-list/receipt-list.component';
 
+/**
+ * The routes configuration for the application.
+ */
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
