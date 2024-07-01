@@ -1,5 +1,28 @@
+<!--
+  This HTML template represents the client list component.
+  It displays a table of clients with their information such as ID, Rut, Name, etc.
+  The table also includes a search bar and buttons to change the status of a client.
+
+  Usage:
+  <app-client-list></app-client-list>
+
+  Inputs:
+  - users: An array of user objects representing the clients.
+
+  Outputs:
+  - search: An event emitted when the user performs a search.
+
+  Example:
+  <app-client-list [users]="clientList" (search)="onSearch($event)"></app-client-list>
+-->
+<section class="p-3">
+  <!-- ... rest of the code ... -->
+</section>
 <section class="p-3">
   <div class="mx-auto max-w-screen-xl px-4">
+    <app-search-client-bar
+      (search)="this.search($event)"
+    ></app-search-client-bar>
     <div class="bg-white relative shadow-md overflow-x-auto">
       <table class="w-full text-sm text-left text-gray-500">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 text-center">
