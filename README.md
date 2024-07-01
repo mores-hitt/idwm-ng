@@ -1,4 +1,4 @@
-# Taller IDWM parte móvil
+# Taller IDWM - Cliente Web
 
 ## Este proyecto utiliza Angular 16 y  un backend modificado
 
