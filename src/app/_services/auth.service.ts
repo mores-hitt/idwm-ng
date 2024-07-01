@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { Auth } from '../_interfaces/auth';
+import { User } from '../_interfaces/user';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -37,6 +38,21 @@ export class AuthService {
   logout() {
     localStorage.removeItem('auth');
     this.currentAuthSource.next(null);
+  }
+
+  getUser(): User {
+    if (!localStorage.getItem('auth'))
+      return {} as User;
+    const auth = JSON.parse(localStorage.getItem('auth') || '{}');
+    return auth.user;
+  }
+
+  getUserId() {
+    if (!localStorage.getItem('auth'))
+      return;
+    const auth = JSON.parse(localStorage.getItem('auth') || '{}');
+    const user = auth.user;
+    return user.id;
   }
 
   getRole() {
